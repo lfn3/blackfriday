@@ -380,6 +380,35 @@ func TestCodeSpan(t *testing.T) {
 	doTestsInline(t, tests)
 }
 
+func TestAside(t *testing.T) {
+	var tests = []string{
+		"(aside)\n",
+		"<p><aside>aside</aside></p>\n",
+
+		"(an aside with spaces)\n",
+		"<p><aside>an aside with spaces</aside></p>\n",
+
+		"(an aside with spaces)not here\n",
+		"<p><aside>an aside with spaces</aside>not here</p>\n",
+
+		"a (single marker\n",
+		"<p>a (single marker</p>\n",
+
+		"markers with ( ) a space\n",
+		"<p>markers with <aside> </aside> a space</p>\n",
+
+		"(an aside) and a (stray\n",
+		"<p><aside>an aside</aside> and a (stray</p>\n",
+
+		"(an aside *with* _awkward characters_ in it)\n",
+		"<p><aside>an aside <em>with</em> <em>awkward characters</em> in it</aside></p>\n",
+
+		"(split over\ntwo lines)\n",
+		"<p><aside>split over\ntwo lines</aside></p>\n",
+	}
+	doTestsInline(t, tests)
+}
+
 func TestLineBreak(t *testing.T) {
 	var tests = []string{
 		"this line  \nhas a break\n",

@@ -487,6 +487,12 @@ func (options *Html) CodeSpan(out *bytes.Buffer, text []byte) {
 	out.WriteString("</code>")
 }
 
+func (options *Html) Aside(out *bytes.Buffer, text []byte) {
+	out.WriteString("<aside>")
+	out.Write(text)
+	out.WriteString("</aside>")
+}
+
 func (options *Html) DoubleEmphasis(out *bytes.Buffer, text []byte) {
 	out.WriteString("<strong>")
 	out.Write(text)

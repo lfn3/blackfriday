@@ -199,6 +199,11 @@ func (options *Latex) CodeSpan(out *bytes.Buffer, text []byte) {
 	out.WriteString("}")
 }
 
+//TODO: This
+func (options *Latex) Aside(out *bytes.Buffer, text []byte) {
+
+}
+
 func (options *Latex) DoubleEmphasis(out *bytes.Buffer, text []byte) {
 	out.WriteString("\\textbf{")
 	out.Write(text)

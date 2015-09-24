@@ -1101,3 +1101,31 @@ func helperTripleEmphasis(p *parser, out *bytes.Buffer, data []byte, offset int,
 	}
 	return 0
 }
+
+// '(' begin an aside
+func aside(p *parser, out *bytes.Buffer, data []byte, offset int) int {
+	data = data[offset:]
+
+	// find the next delimiter
+	end := 0
+	for ; end < len(data); end++ {
+		if data[end] == ')' {
+			break
+		}
+	}
+
+	// no matching delimiter?
+	if end >= len(data) {
+		return 0
+	}
+
+	if end == 1 {
+		return 0
+	}
+
+	var work bytes.Buffer
+	p.inline(&work, data[1:end])
+	p.r.Aside(out, work.Bytes())
+
+	return end + 1
+}
